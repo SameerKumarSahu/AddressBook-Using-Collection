@@ -111,6 +111,7 @@ public class AddressBook {
 			}
 		}
 	}
+	
 	//Display the contact details
 	public static void viewContact() {
 		if (personLists.isEmpty())
