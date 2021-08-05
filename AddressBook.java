@@ -95,5 +95,28 @@ public class AddressBook {
 				System.out.println("Enter valid First name");
 		}
 	}
+	public static void removeContact() {
+		System.out.println("Enter the first name for deleting the contact details");
+		String conformname = sc.next();
+		for (int i = 0; i < personLists.size(); i++) {
+			if (personLists.get(i).getFirstName().equals(conformname)) {
+				personLists.remove(i);
+				System.out.println("Contact details removed sucessfully");
+			} else {
+				System.out.println("No contact found to delete ..!");
+
+			}
+		}
+	}
+	public static void viewContact() {
+		if (personLists.isEmpty())
+			System.out.println("No contacts found!");
+	
+		for (int i = 0; i < personLists.size(); i++) {
+			System.out.println(" " + personLists.get(i));
+			System.out.println("---------------------------");
+			;
+		}
+	}
 
 }
