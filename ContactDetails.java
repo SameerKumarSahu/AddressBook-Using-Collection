@@ -91,9 +91,9 @@ public class ContactDetails {
 
 	@Override
 	public String toString() {
-		return "Contact Details are \n" + " FirstName :" + firstName + "\n lastName:" + lastName + "\n address:"
-				+ address + "\n city:" + city + "\n state:" + state + "\n zip:" + zip + "\n phoneNum:" + phoneNum
-				+ "\n eMail:" + email;
+		return "Contact Details are \n" + " FirstName :" + firstName + "\n LastName:" + lastName + "\n Address:"
+				+ address + "\n City:" + city + "\n State:" + state + "\n Zip:" + zip + "\n PhoneNum:" + phoneNum
+				+ "\n Email:" + email;
 	}
 
 }
