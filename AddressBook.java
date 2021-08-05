@@ -8,7 +8,8 @@ public class AddressBook {
 	static Scanner sc = new Scanner(System.in);
 
 	static ArrayList<ContactDetails> personLists = new ArrayList<ContactDetails>();
-	//Adding a new contact details
+
+	// Adding a new contact details
 	public static void addContact() {
 
 		System.out.println("Enter the First name");
@@ -34,13 +35,14 @@ public class AddressBook {
 
 		System.out.println("Enter your Mail address");
 		String email = sc.nextLine();
-		
+
 		ContactDetails newPerson = new ContactDetails(fn, ln, add, city, state, zip, ph, email);
 		personLists.add(newPerson);
 		System.out.println(personLists);
 
 	}
-	//Edit the contact details
+
+	// Edit the contact details
 	public static void editContact() {
 		System.out.println("Confirm your first name to edit details: ");
 		String confirm_name = sc.next();
@@ -56,7 +58,7 @@ public class AddressBook {
 				switch (option) {
 				case 1:
 					System.out.println("Enter new First Name: ");
-					
+
 					personLists.get(i).setFirstName(sc.next());
 					break;
 				case 2:
@@ -95,6 +97,7 @@ public class AddressBook {
 				System.out.println("Enter valid First name");
 		}
 	}
+	//Deleting the contact details
 	public static void removeContact() {
 		System.out.println("Enter the first name for deleting the contact details");
 		String conformname = sc.next();
@@ -108,10 +111,12 @@ public class AddressBook {
 			}
 		}
 	}
+	
+	//Display the contact details
 	public static void viewContact() {
 		if (personLists.isEmpty())
 			System.out.println("No contacts found!");
-	
+
 		for (int i = 0; i < personLists.size(); i++) {
 			System.out.println(" " + personLists.get(i));
 			System.out.println("---------------------------");
