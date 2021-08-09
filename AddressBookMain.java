@@ -20,24 +20,34 @@ public class AddressBookMain {
 				ArrayList<ContactDetails> personArrayList = new ArrayList<ContactDetails>();
 				System.out.println("Enter the AddressBook Name : ");
 				String addressBookName = scanner.next();
-
-				boolean flag = true;
-				while (flag) {
-					ContactDetails person = new ContactDetails();
-					System.out.println("1.Add contact in " + addressBookName + "\n2.To Exit from " + addressBookName);
-					int choice = scanner.nextInt();
-					switch (choice) {
-					case 1:
-						personArrayList = addContact(person, personArrayList);
-						addressBook.put(addressBookName, personArrayList);
-						System.out.println("Added person info in " + addressBookName + " successfully.");
-						break;
-					default:
-						flag = false;
-						System.out.println("Exit from " + addressBookName + " address book.");
+				// validating to add new address book
+				if (!addressBook.containsKey(addressBookName)) {
+					boolean flag = true;
+					while (flag) {
+						ContactDetails person = new ContactDetails();
+						System.out
+								.println("1.Add contact in " + addressBookName + "\n2.To Exit from " + addressBookName);
+						int choice = scanner.nextInt();
+						switch (choice) {
+						case 1:
+							boolean duplicate=duplicateCheck(personArrayList);
+							System.out.println(duplicate);
+							if (duplicate) {
+							personArrayList = addContact(person, personArrayList);
+							addressBook.put(addressBookName, personArrayList);
+							
+							System.out.println("Added person info in " + addressBookName + " successfully.");
+							}
+							break;
+						default:
+							flag = false;
+							System.out.println("Exit from " + addressBookName + " address book.");
+						}
 					}
+				} else {
+					System.out.println(addressBookName + " address book already present.");
 				}
-
+				System.out.println("");
 			}
 
 			// Edit the existed address book
@@ -59,6 +69,7 @@ public class AddressBookMain {
 							int choice = scanner.nextInt();
 							switch (choice) {
 							case 1:
+								// duplicateCheck(personArrayList);
 								personArrayList = addContact(person, personArrayList);
 								break;
 							case 2:
@@ -94,7 +105,7 @@ public class AddressBookMain {
 				if (!addressBook.isEmpty()) {
 					System.out.println("Address book names : ");
 					for (String key : addressBook.keySet()) {
-						System.out.println(key);
+						System.out.print(key);
 					}
 					System.out.println();
 				} else {
@@ -112,6 +123,7 @@ public class AddressBookMain {
 	// adding person info to the address book
 	public static ArrayList<ContactDetails> addContact(ContactDetails person,
 			ArrayList<ContactDetails> personArrayList) {
+
 		System.out.print("Enter first name: ");
 		String firstName = scanner.next();
 		person.setFirstName(firstName);
@@ -212,5 +224,26 @@ public class AddressBookMain {
 			System.out.println(c.getFirstName() + " " + c.getLastName() + " " + c.getAddress() + " " + c.getCity() + " "
 					+ c.getState() + " " + c.getZip() + " " + c.getPhoneNum() + " " + c.getEmail());
 		}
+	}
+
+	public static boolean duplicateCheck(ArrayList<ContactDetails> personArrayList) {
+		boolean flag = true;
+//		while (flag) {
+		System.out.println("Enter the first name");
+		String conformname = scanner.next();
+		for (int i = 0; i < personArrayList.size(); i++) {
+			ContactDetails c = personArrayList.get(i);
+			if (c.getFirstName().equals(conformname)) {
+				System.out.println("This Person is Already Present");
+				flag= true;
+			} else {
+				System.out.println("You can Add this Person");
+				flag= false;
+				//addContact(c, personArrayList);
+//					flag = false;
+
+			}
+		}
+		return flag;
 	}
 }
